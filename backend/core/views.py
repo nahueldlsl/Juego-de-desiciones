@@ -33,8 +33,6 @@ class UserManagementSerializer(serializers.ModelSerializer):
     def get_role(self, obj):
         if obj.is_superuser:
             return 'SUPERADMIN'
-        if obj.groups.filter(name='Profesores').exists():
-            return 'ADMIN'
         return 'USER'
 
     def create(self, validated_data):
@@ -44,21 +42,32 @@ class UserManagementSerializer(serializers.ModelSerializer):
             is_staff=False,
             is_superuser=False
         )
-        # Asignar por defecto al grupo Profesores
-        profesores_group, _ = Group.objects.get_or_create(name='Profesores')
-        user.groups.add(profesores_group)
+        if validated_data.get('password'):
+            user.set_password(validated_data['password'])
+            user.save()
         return user
 
-# 2. ViewSet exclusivo de administración de profesores (Solo SuperAdmins)
+# 2. ViewSet exclusivo de administración (Solo SuperAdmins)
 class UserManagementViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.filter(is_superuser=False).order_by('-date_joined')
     serializer_class = UserManagementSerializer
     permission_classes = [permissions.IsAdminUser] # Django standard (requiere is_staff o is_superuser)
 
+    def get_queryset(self):
+        # Excluir al propio usuario logueado para evitar que se modifique o elimine a sí mismo
+        return User.objects.exclude(id=self.request.user.id).order_by('-date_joined')
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance == request.user:
+            return Response({'error': 'No puedes eliminar tu propia cuenta.'}, status=status.HTTP_400_BAD_REQUEST)
+        return super().destroy(request, *args, **kwargs)
+
     @action(detail=True, methods=['post'], url_path='toggle-status')
     def toggle_status(self, request, pk=None):
-        """Suspende o reactiva una cuenta de Profesor."""
+        """Suspende o reactiva una cuenta."""
         user = self.get_object()
+        if user == request.user:
+            return Response({'error': 'No puedes suspender tu propia cuenta.'}, status=status.HTTP_400_BAD_REQUEST)
         user.is_active = not user.is_active
         user.save()
         status_str = "activado" if user.is_active else "suspendido"
@@ -66,16 +75,23 @@ class UserManagementViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'], url_path='toggle-role')
     def toggle_role(self, request, pk=None):
-        """Promueve o remueve a un usuario del grupo Profesores."""
+        """Promueve a Admin (Superusuario) o degrada a Usuario común."""
         user = self.get_object()
-        profesores_group, _ = Group.objects.get_or_create(name='Profesores')
-        if user.groups.filter(name='Profesores').exists():
-            user.groups.remove(profesores_group)
+        if user == request.user:
+            return Response({'error': 'No puedes cambiar tu propio rol.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if user.is_superuser:
+            user.is_superuser = False
+            user.is_staff = False
             role = 'USER'
         else:
-            user.groups.add(profesores_group)
-            role = 'ADMIN'
+            user.is_superuser = True
+            user.is_staff = True
+            role = 'SUPERADMIN'
+            
+        user.save()
         return Response({'message': f'Usuario {user.username} actualizado al rol {role}.'}, status=status.HTTP_200_OK)
+
 
 
 class StoryViewSet(viewsets.ModelViewSet):
