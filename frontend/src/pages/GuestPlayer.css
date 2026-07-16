@@ -1,0 +1,374 @@
+.guest-player-container {
+  min-height: 100vh;
+  background: #0b0b10;
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Guest Loading */
+.guest-loading-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: #0b0b10;
+}
+
+.guest-loading-screen .error-text {
+  font-size: 0.8rem;
+  color: #ef4444;
+}
+
+/* Guest Header */
+.guest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: rgba(15, 15, 25, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+}
+
+.player-badge {
+  font-weight: 700;
+  color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.room-pin-badge {
+  font-weight: 700;
+  color: #a0aec0;
+}
+
+/* Guest Lobby */
+.guest-lobby-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.lobby-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.guest-lobby-screen h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+}
+
+.guest-lobby-screen p {
+  color: #a0aec0;
+  margin: 0 0 40px 0;
+}
+
+.loading-bar-marquee {
+  width: 200px;
+  height: 4px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.loading-bar-marquee::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 100%;
+  background: #60a5fa;
+  border-radius: 2px;
+  position: absolute;
+  left: -60px;
+  animation: marquee 1.5s infinite linear;
+}
+
+@keyframes marquee {
+  to { left: 200px; }
+}
+
+.footer-status {
+  font-size: 0.85rem;
+  color: #718096;
+}
+
+/* PLAYING: CONJUNTO Keypad */
+.guest-gameplay-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.keypad-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Voted status */
+.voted-waiting-screen {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-icon {
+  font-size: 3.5rem;
+  color: #34d399;
+  margin-bottom: 16px;
+  animation: scale-up 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes scale-up {
+  from { transform: scale(0.6); }
+  to { transform: scale(1); }
+}
+
+.voted-waiting-screen h2 {
+  font-size: 1.8rem;
+  margin: 0 0 12px 0;
+}
+
+.voted-waiting-screen p {
+  color: #a0aec0;
+  max-width: 400px;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.voted-waiting-screen .hint-text {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 32px;
+}
+
+.pulse-loader {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #34d399;
+  animation: pulse-circle 1.6s infinite ease-in-out;
+}
+
+@keyframes pulse-circle {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Voting Grid buttons */
+.voting-keypad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.voting-keypad h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+}
+
+.narrative-hint {
+  font-size: 0.9rem;
+  color: #718096;
+  margin-bottom: 32px;
+}
+
+.keypad-buttons-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.btn-keypad-choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+}
+
+.btn-keypad-choice:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.15);
+}
+
+.btn-keypad-choice:active {
+  transform: translateY(0);
+}
+
+.choice-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.choice-text {
+  font-size: 1rem;
+  font-weight: 700;
+  flex: 1;
+}
+
+.choice-color-0 {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+.choice-color-1 {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+.choice-color-2 {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+.choice-color-3 {
+  background: linear-gradient(135deg, #db2777, #ec4899);
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+.no-choices-pad {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,0.08);
+}
+
+.no-choices-pad h3 {
+  margin: 0 0 8px 0;
+  color: #9ca3af;
+}
+
+.no-choices-pad p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Guest self paced view */
+.guest-self-paced-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* GUEST FINISHED */
+.guest-finished-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.end-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.guest-finished-screen h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+}
+
+.guest-finished-screen p {
+  color: #a0aec0;
+  max-width: 400px;
+  margin: 0 0 40px 0;
+  line-height: 1.5;
+}
+
+.btn-return-home {
+  padding: 12px 24px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: #e2e8f0;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-return-home:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Guest Timer and Timeout state styles */
+.guest-timer-banner {
+  width: 100%;
+  padding: 10px 16px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+  color: #f87171;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.1);
+}
+
+.timeout-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeout-icon {
+  font-size: 3.5rem;
+  color: #f87171;
+  margin-bottom: 16px;
+  animation: shake 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes shake {
+  from { transform: rotate(-5deg); }
+  to { transform: rotate(5deg); }
+}
+
+.badge-avatar {
+  margin-right: 4px;
+  font-size: 1.15rem;
+}

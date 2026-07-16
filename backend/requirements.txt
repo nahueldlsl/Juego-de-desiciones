@@ -1,0 +1,10 @@
+django
+djangorestframework
+django-cors-headers
+Pillow
+channels
+daphne
+djangorestframework-simplejwt
+google-generativeai
+python-dotenv
+

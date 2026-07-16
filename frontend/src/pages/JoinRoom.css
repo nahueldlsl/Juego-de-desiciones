@@ -1,0 +1,217 @@
+.join-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b0b10;
+  padding: 24px;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+}
+
+.join-card {
+  background: rgba(30, 30, 40, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px 32px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.join-logo {
+  font-size: 3.2rem;
+  margin-bottom: 12px;
+}
+
+.join-card h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.join-card p {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 28px 0;
+}
+
+.join-form {
+  width: 100%;
+}
+
+.join-form .form-group {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.pin-input, .nickname-input {
+  width: 100%;
+  padding: 14px 20px;
+  background: #151520;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.pin-input:focus, .nickname-input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.2);
+  outline: none;
+}
+
+.pin-input {
+  letter-spacing: 4px;
+  font-size: 1.3rem;
+  font-family: monospace;
+}
+
+.join-error-banner {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.btn-join-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #60a5fa, #8b5cf6);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-join-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+}
+
+.btn-join-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-join-cancel {
+  margin-top: 16px;
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.btn-join-cancel:hover {
+  color: #a0aec0;
+}
+
+/* Avatar Emoji Picker styling */
+.avatar-picker-section {
+  width: 100%;
+  margin-bottom: 24px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: left;
+}
+
+.picker-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #9ca3af;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.avatar-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.carousel-arrow {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #60a5fa;
+  transform: scale(1.05);
+}
+
+.avatar-display {
+  background: rgba(96, 165, 250, 0.1);
+  border: 2px solid #60a5fa;
+  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  font-size: 2.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(96, 165, 250, 0.25);
+  user-select: none;
+}
+
+.custom-emoji-row {
+  width: 100%;
+}
+
+.custom-avatar-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: #101018;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.custom-avatar-input:focus {
+  border-color: #60a5fa;
+  outline: none;
+}
+

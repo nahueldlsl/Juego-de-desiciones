@@ -1,0 +1,34 @@
+# Python / Django
+backend/venv/
+backend/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+backend/db.sqlite3
+backend/media/
+
+# Node / React
+frontend/node_modules/
+frontend/dist/
+.eslintcache
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
