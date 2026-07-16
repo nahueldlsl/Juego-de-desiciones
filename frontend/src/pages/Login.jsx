@@ -65,7 +65,7 @@ const Login = () => {
           <div className="invite-box" style={{ background: 'rgba(139, 92, 246, 0.1)', border: '1px solid rgba(139, 92, 246, 0.3)', borderRadius: '12px', padding: '16px', marginBottom: '24px', textAlign: 'left' }}>
             <h3 style={{ margin: '0 0 6px 0', fontSize: '1rem', color: '#c084fc' }}>🎓 ¡Crea tu Aventura!</h3>
             <p style={{ margin: 0, fontSize: '0.85rem', color: '#a0aec0', lineHeight: '1.4' }}>
-              Para forjar y publicar narrativas interactivas personalizadas, debes iniciar sesión con una cuenta de Profesor o Super Admin. Si aún no tienes una, solicita su creación a tu Administrador de la plataforma.
+              Para forjar y publicar narrativas interactivas personalizadas, debes iniciar sesión con una cuenta registrada. Si aún no tienes una, ¡regístrate gratis!
             </p>
           </div>
         )}
@@ -80,7 +80,7 @@ const Login = () => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="ej: admin"
+              placeholder="ej: mi_usuario"
               required
             />
           </div>
@@ -103,11 +103,12 @@ const Login = () => {
         </form>
         
         <div className="login-footer">
-          <p>¿No estás registrado? Juega como Guest desde el Home.</p>
+          <p>¿No tienes una cuenta? <span onClick={() => navigate('/register')} style={{ color: '#8b5cf6', fontWeight: 'bold', cursor: 'pointer', textDecoration: 'underline' }}>Regístrate aquí</span></p>
           <button onClick={() => navigate('/')} className="btn-secondary">
             Volver al Inicio
           </button>
         </div>
+
       </div>
     </div>
   );

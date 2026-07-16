@@ -285,3 +285,38 @@ class RoomViewSet(viewsets.ViewSet):
             return Response({'error': 'Room not found or no analytics available.'}, status=status.HTTP_404_NOT_FOUND)
             
         return Response(analytics_data, status=status.HTTP_200_OK)
+
+
+from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
+
+class RegisterView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        email = request.data.get('email', '')
+
+        if not username or not password:
+            return Response(
+                {"error": "El nombre de usuario y la contraseña son obligatorios."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if User.objects.filter(username=username).exists():
+            return Response(
+                {"error": "El nombre de usuario ya está en uso."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+            email=email
+        )
+        return Response(
+            {"message": "Usuario registrado exitosamente.", "userId": user.id},
+            status=status.HTTP_201_CREATED
+        )
+

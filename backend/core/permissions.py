@@ -22,11 +22,12 @@ class IsSuperAdminOrAuthorOrReadOnly(permissions.BasePermission):
         if not request.user or not request.user.is_authenticated:
             return False
             
-        # 3. Solo SuperAdmins o miembros del grupo "Profesores" pueden crear (POST)
+        # 3. Solo SuperAdmins o usuarios registrados/autenticados pueden crear (POST)
         if request.method == 'POST':
-            return request.user.is_superuser or request.user.groups.filter(name='Profesores').exists()
+            return request.user.is_superuser or request.user.is_authenticated
             
         return True
+
 
     def _get_story_from_obj(self, obj):
         # Resuelve el objeto Story según la entidad recibida

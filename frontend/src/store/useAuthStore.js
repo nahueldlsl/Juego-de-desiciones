@@ -24,11 +24,9 @@ const useAuthStore = create((set) => ({
     localStorage.setItem('token', token);
     const decoded = decodeToken(token);
     
-    let derivedRole = 'ADMIN';
+    let derivedRole = 'USER';
     if (decoded?.is_superuser) {
       derivedRole = 'SUPERADMIN';
-    } else if (decoded?.groups && !decoded.groups.includes('Profesores')) {
-      derivedRole = 'USER';
     }
 
     set({
@@ -56,11 +54,9 @@ const useAuthStore = create((set) => ({
     if (token) {
       const decoded = decodeToken(token);
       if (decoded && decoded.exp * 1000 > Date.now()) {
-        let derivedRole = 'ADMIN';
+        let derivedRole = 'USER';
         if (decoded?.is_superuser) {
           derivedRole = 'SUPERADMIN';
-        } else if (decoded?.groups && !decoded.groups.includes('Profesores')) {
-          derivedRole = 'USER';
         }
         set({
           token,
@@ -74,6 +70,7 @@ const useAuthStore = create((set) => ({
     }
     set({ token: null, isAuthenticated: false, user: null, role: 'GUEST', loading: false });
   }
+
 }));
 
 export default useAuthStore;

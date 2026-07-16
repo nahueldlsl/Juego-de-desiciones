@@ -18,7 +18,7 @@ const Home = () => {
   const canModifyStory = (story) => {
     if (role === 'SUPERADMIN') return true;
     const userId = user?.user_id || user?.id;
-    if (role === 'ADMIN' && userId && story.author_id === userId) return true;
+    if (role === 'USER' && userId && story.author_id === userId) return true;
     return false;
   };
 
@@ -102,8 +102,9 @@ const Home = () => {
         {role !== 'GUEST' ? (
           <>
             <span style={{ fontSize: '0.9rem', color: '#a0aec0' }}>
-              Conectado como <strong>{user?.username || 'Usuario'}</strong> ({role === 'SUPERADMIN' ? 'Super Admin' : 'Profesor'})
+              Conectado como <strong>{user?.username || 'Usuario'}</strong> ({role === 'SUPERADMIN' ? 'Super Admin' : 'Usuario Registrado'})
             </span>
+
             {role === 'SUPERADMIN' && (
               <button onClick={() => navigate('/superadmin/users')} className="btn-secondary" style={{ padding: '6px 12px', fontSize: '0.8rem', background: 'rgba(139, 92, 246, 0.2)', borderColor: '#8b5cf6', color: '#fff', borderRadius: '6px', cursor: 'pointer' }}>
                 ⚙️ Admin

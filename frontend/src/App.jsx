@@ -12,6 +12,7 @@ import GuestPlayer from './pages/GuestPlayer';
 import TeacherDashboard from './pages/TeacherDashboard';
 import UserManagement from './pages/UserManagement';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -22,16 +23,17 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/play/:storyId" element={<Game />} />
             
             {/* Protected Editor and Dashboard */}
             <Route path="/create" element={
-              <ProtectedRoute allowedRoles={['SUPERADMIN', 'ADMIN']}>
+              <ProtectedRoute allowedRoles={['SUPERADMIN', 'USER']}>
                 <Editor />
               </ProtectedRoute>
             } />
             <Route path="/dashboard" element={
-              <ProtectedRoute allowedRoles={['SUPERADMIN', 'ADMIN', 'GUEST']}>
+              <ProtectedRoute allowedRoles={['SUPERADMIN', 'USER', 'GUEST']}>
                 <Dashboard />
               </ProtectedRoute>
             } />
@@ -55,3 +57,4 @@ function App() {
 }
 
 export default App;
+
