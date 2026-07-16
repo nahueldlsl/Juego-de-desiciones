@@ -58,7 +58,7 @@ const UserManagement = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Error al crear la cuenta de profesor.');
+        throw new Error('Error al crear la cuenta de usuario.');
       }
 
       setUsername('');
@@ -135,13 +135,13 @@ const UserManagement = () => {
           ← Volver al Home
         </button>
         <h1>Panel de Super Admin</h1>
-        <p>Administración y asignación de cuentas de Profesores.</p>
+        <p>Administración y asignación de roles a las cuentas del sistema.</p>
       </div>
 
       <div className="usermgmt-grid">
         {/* Left Side: Create User Form */}
         <div className="usermgmt-card form-card">
-          <h2>Registrar Nuevo Profesor</h2>
+          <h2>Registrar Nuevo Usuario/Admin</h2>
           <form onSubmit={handleCreateUser}>
             <div className="form-group">
               <label htmlFor="username">Nombre de Usuario</label>
@@ -150,7 +150,7 @@ const UserManagement = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="ej: profesor_gomez"
+                placeholder="ej: nuevo_usuario"
                 required
               />
             </div>
@@ -162,7 +162,7 @@ const UserManagement = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="ej: gomez@colegio.edu"
+                placeholder="ej: usuario@correo.com"
               />
             </div>
 
@@ -178,7 +178,7 @@ const UserManagement = () => {
             </div>
 
             <button type="submit" className="btn btn-primary" disabled={submitting}>
-              {submitting ? 'Creando...' : 'Crear Cuenta de Profesor ➔'}
+              {submitting ? 'Creando...' : 'Crear Cuenta ➔'}
             </button>
           </form>
         </div>
@@ -187,7 +187,7 @@ const UserManagement = () => {
         <div className="usermgmt-card list-card">
           <h2>Usuarios Registrados</h2>
           {loading ? (
-            <div className="loader">Cargando profesores...</div>
+            <div className="loader">Cargando usuarios...</div>
           ) : error ? (
             <div className="error-alert">⚠️ Error: {error}</div>
           ) : users.length === 0 ? (
@@ -213,9 +213,10 @@ const UserManagement = () => {
                       <td>{u.email || '-'}</td>
                       <td>
                         <span className={`badge badge-role ${u.role}`}>
-                          {u.role === 'ADMIN' ? 'Profesor 🎓' : 'Usuario Común 👤'}
+                          {u.role === 'ADMIN' || u.role === 'SUPERADMIN' ? 'Admin 🎓' : 'Usuario 👤'}
                         </span>
                       </td>
+
                       <td>
                         <span className={`badge badge-status ${u.is_active ? 'active' : 'suspended'}`}>
                           {u.is_active ? 'Activo' : 'Suspendido'}
