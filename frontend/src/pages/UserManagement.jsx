@@ -18,7 +18,7 @@ const UserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/users/', {
+      const response = await fetch(`http://127.0.0.1:8000/api/users/?_t=${Date.now()}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

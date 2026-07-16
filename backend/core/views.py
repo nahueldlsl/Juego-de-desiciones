@@ -77,6 +77,7 @@ class UserManagementViewSet(viewsets.ModelViewSet):
     def toggle_role(self, request, pk=None):
         """Promueve a Admin (Superusuario) o degrada a Usuario común."""
         user = self.get_object()
+        logger.warning(f"TOGGLE ROLE WARNING: user={user.username}, request.user={request.user.username}, before: is_superuser={user.is_superuser}")
         if user == request.user:
             return Response({'error': 'No puedes cambiar tu propio rol.'}, status=status.HTTP_400_BAD_REQUEST)
         
@@ -90,7 +91,10 @@ class UserManagementViewSet(viewsets.ModelViewSet):
             role = 'SUPERADMIN'
             
         user.save()
+        logger.warning(f"TOGGLE ROLE WARNING: user={user.username}, after: is_superuser={user.is_superuser}")
         return Response({'message': f'Usuario {user.username} actualizado al rol {role}.'}, status=status.HTTP_200_OK)
+
+
 
 
 
