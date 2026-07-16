@@ -1,8 +1,12 @@
+import logging
 from django.db.models import Q
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets, status, serializers, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
+logger = logging.getLogger(__name__)
+
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import Story, Scene, Choice, Room
 from .serializers import (
