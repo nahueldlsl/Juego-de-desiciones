@@ -170,7 +170,7 @@
   font-weight: 700;
 }
 
-.badge-role.ADMIN {
+.badge-role.ADMIN, .badge-role.SUPERADMIN {
   background: rgba(139, 92, 246, 0.15);
   color: #c084fc;
 }
